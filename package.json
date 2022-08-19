@@ -7,10 +7,10 @@
     "src"
   ],
   "main": "src/index.js",
-  "homepage": "TODO",
+  "homepage": "https://github.com/artemkv/journey3-nodejs-sdk",
   "repository": {
     "type": "git",
-    "url": "git+TODO"
+    "url": "git+https://github.com/artemkv/journey3-nodejs-sdk.git"
   },
   "author": {
     "name": "artemkv",
