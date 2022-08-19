@@ -18,13 +18,39 @@ Use this connector in your Web or Web-based apps (i.e. Ionic) to:
 ### Installing the connector
 
 ```
-TODO:
+npm i journey3-nodejs-sdk
 ```
 
 ### Initializing the connector
 
+On your website:
+
 ```js
-TODO:
+import {initializeWeb} from 'journey3-nodejs-sdk';
+
+const version = '1.0'; // Your app version
+const isRelease = production ? true : false; // Separate dev stats from production stats
+initializeWeb(
+  '<accountId>',
+  '<appId>',
+  version,
+  isRelease,
+);
+```
+
+In your mobile app, e.g. Ionic:
+
+```js
+import {initializeMobile} from 'journey3-nodejs-sdk';
+
+const version = '1.0'; // Your app version
+const isRelease = production ? true : false; // Separate dev stats from production stats
+initializeMobile(
+  '<accountId>',
+  '<appId>',
+  version,
+  isRelease,
+);
 ```
 
 ### Report an event
@@ -32,7 +58,9 @@ TODO:
 Events are used to track feature usage:
 
 ```js
-TODO:
+import {reportEvent} from 'journey3-nodejs-sdk';
+
+reportEvent('click_play');
 ```
 
 ### Report an error
@@ -40,7 +68,9 @@ TODO:
 Errors are special types of events:
 
 ```js
-TODO:
+import {reportError} from 'journey3-nodejs-sdk';
+
+reportError('err_loading_catalog');
 ```
 
 ### Report a stage transition
@@ -48,7 +78,9 @@ TODO:
 Stage transitions are used to build user conversion funnels:
 
 ```js
-TODO:
+import {reportStageTransition} from 'journey3-nodejs-sdk';
+
+reportStageTransition(2, 'explore');
 ```
 
 It's up to you what stages you would like to use, we recommend to start with the following stages:
