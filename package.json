@@ -1,12 +1,13 @@
 {
   "name": "journey3-nodejs-sdk",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "Journey3 NodeJS SDK",
   "type": "module",
   "files": [
     "src"
   ],
   "main": "src/index.js",
+  "types": "./dist/index.d.ts",
   "homepage": "https://github.com/artemkv/journey3-nodejs-sdk",
   "repository": {
     "type": "git",
@@ -18,7 +19,8 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "jest": "^28.1.3"
+    "jest": "^28.1.3",
+    "typescript": "^4.7.4"
   },
   "scripts": {
     "start": "node ./src/index.js",
