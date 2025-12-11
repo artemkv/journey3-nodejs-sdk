@@ -126,7 +126,7 @@ export const initializeInternal = async (accountId, appId, version, isRelease) =
         console.info(`Journey3: Started new session ${currentSession.id}`);
 
         // report previous session
-        const session = await _persistence.loadLastSession(_getNowUtc, _getNewId);
+        const session = _persistence.loadLastSession(_getNowUtc, _getNewId);
         if (session != null) {
             console.info('Journey3: Report the end of the previous session');
             try {
@@ -175,7 +175,7 @@ export const initializeInternal = async (accountId, appId, version, isRelease) =
         }
 
         // save current session
-        await _persistence.saveSession(currentSession);
+        _persistence.saveSession(currentSession);
 
         // report the new session (header)
         console.info('Journey3: Report the start of a new session');
@@ -240,7 +240,7 @@ export const reportCrash = async (eventName) => {
     reportEventInternal(eventName, false, true, true);
 }
 
-const reportEventInternal = async (eventName, isCollapsible, isError, isCrash) => {
+const reportEventInternal = (eventName, isCollapsible, isError, isCrash) => {
     if (!eventName) {
         throw Error('eventName is mandatory');
     }
@@ -288,7 +288,7 @@ const reportEventInternal = async (eventName, isCollapsible, isError, isCrash) =
         currentSession.end = _getNowUtc();
 
         // save session
-        await _persistence.saveSession(currentSession);
+        _persistence.saveSession(currentSession);
     } catch (err) {
         console.warn(`Journey3: Cannot update session: ${err}`);
     }
@@ -308,7 +308,7 @@ const reportEventInternal = async (eventName, isCollapsible, isError, isCrash) =
  * If you sumbit the new name for the same stage, that new name will be used
  * in all future reports.
  */
-export const reportStageTransition = async (stage, stageName) => {
+export const reportStageTransition = (stage, stageName) => {
     stage = parseInt(stage);
     if (!stage) {
         throw Error('stage is mandatory, should be an integer');
@@ -337,7 +337,7 @@ export const reportStageTransition = async (stage, stageName) => {
         currentSession.end = _getNowUtc();
 
         // save session
-        await _persistence.saveSession(currentSession);
+        _persistence.saveSession(currentSession);
     } catch (err) {
         console.warn(`Journey3: Cannot update session: ${err}`);
         throw err;
