@@ -1,1 +1,1 @@
-{"version":3,"file":"journey.d.ts","sourceRoot":"","sources":["../src/journey.js"],"names":[],"mappings":"AAkBO,yFAKN;AAeM,0GAcN;AAaM,uGAqCN;AAEM,4GAiFN;AAwBM,+EAEN;AAaM,2DAEN;AAYM,2DAEN;AAsEM,iFAkCN"}
+{"version":3,"file":"journey.d.ts","sourceRoot":"","sources":["../src/journey.js"],"names":[],"mappings":"AAkBO,yFAKN;AAeM,4CALI,MAAM,SACN,MAAM,WACN,MAAM,aACN,OAAO,iBAgBjB;AAaM,yCALI,MAAM,SACN,MAAM,WACN,MAAM,aACN,OAAO,iBAuCjB;AAGM,4GAiFN;AAwBM,uCApBI,MAAM,iBACN,OAAO,QAqBjB;AAaM,uCATI,MAAM,QAWhB;AAYM,uCARI,MAAM,QAUhB;AAsEM,6CAXI,MAAM,aAIN,MAAM,QAyChB"}

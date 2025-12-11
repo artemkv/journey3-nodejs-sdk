@@ -31,10 +31,10 @@ let currentSession = null;
  * Use this method if you are running web app as a mobile app,
  * for example, using Ionic framework.
  * This method creates a new session every time it is called.
- * @param accountId your account id
- * @param appId is your application id
- * @param version the application version (e.g. '1.2.3')
- * @param isRelease separates debug sessions from release (i.e. production) sessions (true of false).
+ * @param {string} accountId your account id
+ * @param {string} appId is your application id
+ * @param {string} version the application version (e.g. '1.2.3')
+ * @param {boolean} isRelease separates debug sessions from release (i.e. production) sessions (true of false).
  */
 export const initializeMobile = async (accountId, appId, version, isRelease) => {
     if (initializing) {
@@ -58,10 +58,10 @@ export const initializeMobile = async (accountId, appId, version, isRelease) => 
  * This method only creates a new session after 30 minutes of inactivity.
  * Calling this method second time before 30 minutes of inactivity have passed
  * will simply restore the last session.
- * @param accountId your account id
- * @param appId is your application id
- * @param version the application version (e.g. '1.2.3')
- * @param isRelease separates debug sessions from release (i.e. production) sessions (true of false).
+ * @param {string} accountId your account id
+ * @param {string} appId is your application id
+ * @param {string} version the application version (e.g. '1.2.3')
+ * @param {boolean} isRelease separates debug sessions from release (i.e. production) sessions (true of false).
  */
 export const initializeWeb = async (accountId, appId, version, isRelease) => {
     if (initializing) {
@@ -102,6 +102,7 @@ export const initializeWeb = async (accountId, appId, version, isRelease) => {
     }
 }
 
+/** @internal */
 export const initializeInternal = async (accountId, appId, version, isRelease) => {
     if (!accountId) {
         throw Error('accountId is mandatory');
@@ -187,8 +188,8 @@ export const initializeInternal = async (accountId, appId, version, isRelease) =
 
 /**
  * Registers the event in the current session.
- * @param eventName event name
- * @param isCollapsible whether event is collapsible
+ * @param {string} eventName event name
+ * @param {boolean} isCollapsible whether event is collapsible
  * 
  * Events are distinguished by eventName, for example 'click_play',
  * 'add_to_library' or 'use_search'.
@@ -207,13 +208,13 @@ export const initializeInternal = async (accountId, appId, version, isRelease) =
  * Collapsible event names appear in brackets in the sequence,
  * for example '(scroll_to_next_album)'.
  */
-export const reportEvent = async (eventName, isCollapsible) => {
+export const reportEvent = (eventName, isCollapsible) => {
     reportEventInternal(eventName, isCollapsible);
 }
 
 /**
  * Registers the error event in the current session.
- * @param eventName event name
+ * @param {string} eventName event name
  * 
  * Errors are just special types of events.
  * Events are distinguished by eventName, for example 'error_fetching_data' 
@@ -222,13 +223,13 @@ export const reportEvent = async (eventName, isCollapsible) => {
  * 
  * Do not include any personal data as an event name!
  */
-export const reportError = async (eventName) => {
+export const reportError = (eventName) => {
     reportEventInternal(eventName, false, true);
 }
 
 /**
  * Registers the crash event in the current session.
- * @param eventName event name
+ * @param {string} eventName event name
  * 
  * Crashes are just special types of events.
  * Events are distinguished by eventName, you can simply specify 'crash' for a crash event.
@@ -236,7 +237,7 @@ export const reportError = async (eventName) => {
  * 
  * Do not include any personal data as an event name!
  */
-export const reportCrash = async (eventName) => {
+export const reportCrash = (eventName) => {
     reportEventInternal(eventName, false, true, true);
 }
 
@@ -297,11 +298,11 @@ const reportEventInternal = (eventName, isCollapsible, isError, isCrash) => {
 /**
  * Reports the stage transition, e.g. 'engagement', 'checkout', 'payment'.
  * Stage transitions are used to build funnels.
- * @param stage an ordinal number [1..10] that defines the stage.
+ * @param {number} stage an ordinal number [1..10] that defines the stage.
  * Stage transitions must be increasing. If the current session is already
  * at the higher stage, the call will be ignored.
  * This means you don't need to keep track of a current stage.
- * @param stageName provides the stage name for informational purposes.
+ * @param {string} stageName provides the stage name for informational purposes.
  * 
  * It is recommended to define stages upfront as the numbers used to build
  * conversion funnel.
